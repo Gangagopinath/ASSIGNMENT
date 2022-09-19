@@ -1,7 +1,0 @@
-\babel@toc {english}{}
-\contentsline {section}{\numberline {I}Components}{1}%
-\contentsline {section}{\numberline {II}sequence detector}{1}%
-\contentsline {subsection}{\numberline {\mbox {II-A}}\textbf {STATE DIAGRAM}}{1}%
-\contentsline {subsection}{\numberline {\mbox {II-B}}\textbf {STATE TABLE}}{1}%
-\contentsline {subsection}{\numberline {\mbox {II-C}}\textbf {TRUTH TABLE}}{1}%
-\contentsline {subsection}{\numberline {\mbox {II-D}}\textbf {Karnaugh Map } }{2}%
