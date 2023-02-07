@@ -1,0 +1,41 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+
+x = np.linspace(0,20,50) #points on the x axis
+simlen = int(1e7) #number of samples
+
+err = [] #declaring probability list
+randvar1 = np.random.normal(0,1,simlen)
+randvar2= np.random.normal (0,1,simlen)
+for i in range(0,50):
+    err_ind = np.nonzero((randvar1)**2+(randvar2)**2 < x[i]) #checking probability condition
+    err_n = np.size(err_ind) #computing the probability
+    err.append(err_n/simlen) #storing the probability values in a list
+
+def chi_cdf_ahalf(x): # if alpha=0.5
+    return 1-np.exp(-(x/2))
+def chi_cdf_a1(x):  #if alpha=1
+    return 1-np.exp(-(x))
+def chi_cdf_a2(x):   #if alpha=2
+    return 1-np.exp(-2*(x))
+def chi_cdf_a3(x):   #if alpha=3
+    return 1-np.exp(-3*(x))
+
+vec_chi_ahalf=scipy.vectorize(chi_cdf_ahalf)
+vec_chi_a1=scipy.vectorize(chi_cdf_a1)    
+vec_chi_a2=scipy.vectorize(chi_cdf_a2)       
+vec_chi_a3=scipy.vectorize(chi_cdf_a3)       
+
+plt.plot(x.T, err ,marker='o') #plotting the CDF
+plt.plot(x,vec_chi_ahalf(x),'r',marker='x')
+plt.plot(x,vec_chi_a1(x),'m')
+plt.plot(x,vec_chi_a2(x))
+plt.plot(x,vec_chi_a3(x))
+plt.grid() #creating the grid
+plt.xlabel('$x$')
+plt.ylabel('$F_V(x)$')
+plt.legend(['simulated' , 'alpha=0.5','alpha=1','alpha=2','alpha=3'])
+plt.savefig('4.1.2.pdf')
+plt.show()
+
